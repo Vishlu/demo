@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    
+    <title>Calculator</title>
+    <style>
+        body{
+            background: linear-gradient(to right, pink, rgb(190, 38, 190));
+            margin: 60px;
+        }
+
+        div.calculator {
+           display: grid;
+           grid-template-rows: repeat(2);
+           grid-template-columns: auto;
+    
+           
+       }
+
+        .calculator .button{
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            grid-template-rows:  repeat(5);
+            grid-template-columns: repeat(6, 130px);
+            
+        
+        }
+
+
+        #span-one{
+            grid-column: span 2;
+        }
+
+        #span-two{
+            grid-column: span 2;
+        }
+
+    
+
+        div.output input[type=text]{
+            background-color: white;
+            color: black;
+            align-items: center;
+            justify-content:center;
+            display: flex;
+            align-items: flex-end;
+            width: 776px;
+            height: 60px;
+            font-size: 30px;
+            border: none;
+            /* direction: rtl; */
+            
+            
+        }
+
+        div.output input[type=text]:focus{
+            outline: none;
+            box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+            border: 1px solid rgba(81, 203, 238, 1);
+        }
+
+        .math-operator{
+            background-color:#0000; 
+            color: white;
+               
+        }
+
+        .number{
+            background-color: white;
+            color: black;
+        }
+
+        .geometry{
+            background-color: white;
+            color: black;
+        }
+
+        .rainbow{
+            background: linear-gradient(to right, #ff3399, orange, yellow);
+            color: white;
+        }
+
+
+
+        .math-operator:hover{
+            border: white;
+        }
+
+        .number:hover, .geometry:hover{
+            background-color: #f2f2f2;
+        }
+
+        .rainbow:hover{
+            border: 1px solid white;
+        }
+
+        .math-operator:focus, .number:focus, .rainbow:focus, .geometry:focus{
+            outline: none;
+        }
+
+
+        .calculator button{
+            border: 0.1px solid white;
+            font-size: 1em;
+            padding: 20px;
+
+        }
+
+
+
+       
+    </style>
+</head>
+<body>
+
+    <script>
+
+        // used to all data clear 
+        function all_clear(){
+            document.getElementById('previous-operation').value = "";
+            document.getElementById('current-operation').value = "";
+        }
+    
+        // used to display data
+        function display(value){
+            document.getElementById('previous-operation').value += value;
+        }
+        // solve 
+        function solve(){
+            let previous_operation = document.getElementById('previous-operation').value;
+            let current_operation = eval(previous_operation); 
+            document.getElementById('current-operation').value = current_operation;
+        }
+        function back_no() {
+            var x =  document.getElementById('current-operation').value = 0;
+            
+        }
+
+     
+
+        
+    </script>
+
+<div class="calculator" id="main">
+
+    <div class="output" align="center">
+    <input type="text" id="previous-operation">
+    <input type="text" id="current-operation" disabled="True"> 
+    </div>
+
+    <div class="button">
+
+        <button type="button" value="AC"  id="span-one" class="math-operator" onclick="all_clear()">AC</button>
+        <button type="button" value="C" class="math-operator" onclick="back_no()">C</button>
+        <button type="button" value="/" class="math-operator" onclick="display('/')">/</button>
+        <button type="button" value="sin" class="geometry" onclick="display('sin')">sin</button>
+        <button type="button" value="cos" class="geometry" onclick="display('cos')">cos</button>
+      
+
+        <button type="button" value="7" class="number" onclick="display('7')">7</button>
+        <button type="button" value="8" class="number" onclick="display('8')">8</button>
+        <button type="button" value="9" class="number" onclick="display('9')">9</button>
+        <button type="button" value="*" class="math-operator" onclick="display('*')">*</button>
+        <button type="button" value="tan" class="geometry" onclick="display('tan')">tan</button>
+        <button type="button" value="log" class="geometry" onclick="display('log')">log</button>
+
+
+        <button type="button" value="4" class="number" onclick="display('4')">4</button>
+        <button type="button" value="5" class="number" onclick="display('5')">5</button>
+        <button type="button" value="6" class="number" onclick="display('6')">6</button>
+        <button type="button" value="+" class="math-operator" onclick="display('+')">+</button>
+        <button type="button" value="p*"class="geometry" onclick="display('PI')">PI</button>
+        <button type="button" value="e" class="geometry" onclick="display('e')">e</button>
+       
+        <button type="button" value="1" class="number" onclick="display('1')">1</button>
+        <button type="button" value="2" class="number" onclick="display('2')">2</button>
+        <button type="button" value="3" class="number" onclick="display('3')">3</button>
+        <button type="button" value="-" class="math-operator" onclick="display('-')">-</button>
+        <button type="button" value="^" class="geometry" onclick="display('^')">^</button>
+        <button type="button" value="%" class="geometry" onclick="display('%')">%</button>
+    
+
+        <button type="button" value="." id="" class="math-operator" onclick="display('.')">.</button>
+        <button type="button" value="0" id="" class="number" onclick="display('0')">0</button>
+        <button type="button" value="=" id="span-two" class="rainbow" onclick="solve()">=</button>
+        <button type="button" value="(" id="" class="geometry" onclick="display('(')">(</button>
+        <button type="button" value=")" id="" class="geometry" onclick="display(')')">)</button>
+    </div>
+
+
+
+</div>
+</body>
+</html>
